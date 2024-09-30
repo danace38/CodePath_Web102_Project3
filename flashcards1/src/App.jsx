@@ -1,13 +1,15 @@
-import React from 'react'
-import './App.css';
+import React from 'react';
+import { FlashcardList } from './components/FlashcardList';
+
 
 const App = () => {
-
   return (
-    <div className="App">
-
+    <div className="app-container">
+      <main>
+        <FlashcardList />
+      </main>
     </div>
   )
 }
 
-export default App
+export default App;
