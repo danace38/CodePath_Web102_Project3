@@ -29,8 +29,7 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Web102Project3](https://github.com/user-attachments/assets/d10baac5-4134-4a4e-86b1-f7a858044c83)
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
