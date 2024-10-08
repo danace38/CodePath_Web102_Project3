@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Flashcard } from './Flashcard';
 import { Button, Container, Typography, Box, GlobalStyles } from '@mui/material';
@@ -18,10 +19,14 @@ export const FlashcardList = () => {
 
   const [currentCard, setCurrentCard] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [userGuess, setUserGuess] = useState('');
+  const [isCorrect, setIsCorrect] = useState(null);
 
   const handleNextCard = () => {
     setCurrentCard((prevCard) => (prevCard + 1) % flashcards.length);
     setIsFlipped(false);
+    setUserGuess('');
+    setIsCorrect(null);
   }
 
   const handlePreviousCard = () => {
@@ -29,10 +34,18 @@ export const FlashcardList = () => {
       prevCard === 0 ? flashcards.length - 1 : prevCard - 1
     )
     setIsFlipped(false);
+    setUserGuess('');
+    setIsCorrect(null);
   }
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
+  }
+
+  const handleGuessSubmit = () => {
+    const correct = userGuess.toLowerCase() === flashcards[currentCard].answer.toLowerCase();
+    setIsCorrect(correct);
+    setIsFlipped(true);
   }
 
   return (
@@ -69,7 +82,7 @@ export const FlashcardList = () => {
         </Typography>
 
         <Typography variant="h6" sx={{ marginBottom: '10px' }}>
-          How much do know about USA history? Let's test you on your knowledge.
+          How much do you know about USA history? Let's test your knowledge.
         </Typography>
 
         <Typography variant="body1" sx={{ marginBottom: '25px', }}>
@@ -88,7 +101,31 @@ export const FlashcardList = () => {
             answer={flashcards[currentCard].answer}
             isFlipped={isFlipped}
             handleFlip={handleFlip}
+            isCorrect={isCorrect}
           />
+        </Box>
+
+        <Box sx={{ marginBottom: '10px', display: 'flex', gap: '10px' }}>
+          <input
+            type="text"
+            value={userGuess}
+            onChange={(e) => setUserGuess(e.target.value)}
+            placeholder="Enter your guess"
+            style={{ padding: '10px', fontSize: '18px' }}
+          />
+          <Button
+            onClick={handleGuessSubmit}
+            variant="contained"
+            sx={{
+              padding: '10px 15px',
+              backgroundColor: '#4CAF50',
+              '&:hover': {
+                backgroundColor: '#45a049',
+              },
+            }}
+          >
+            Submit
+          </Button>
         </Box>
 
         <Box sx={{ marginTop: '30px', display: 'flex', gap: '20px' }}>
